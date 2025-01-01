@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  115pc:
+    container_name: 115pc
+    image: jason84019020/115pc-docker:latest
+    restart: unless-stopped
+    volumes:
+      - ./downloads:/config/Downloads
+    ports:
+      - 5900:5900
+      - 5800:5800
