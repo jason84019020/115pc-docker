@@ -32,6 +32,6 @@ RUN apt update \
     && mkdir -p /config/Desktop \
     && chmod 777 -R /config/Desktop \
     && cp /usr/share/applications/115Browser.desktop /config/Desktop \
-    && chmod 777 -R /config \
+    && sed -i 's/<decor>no<\/decor>/<decor>yes<\/decor>/g' /opt/base/etc/openbox/rc.xml.template \
     && rm ./${BROWSER_PACKAGE_NAME} \
     && rm -rf /var/lib/apt/lists/*
