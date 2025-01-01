@@ -2,4 +2,4 @@
 openbox-session &
 tint2 &
 pcmanfm --desktop &
-/config/115.sh
+/115.sh

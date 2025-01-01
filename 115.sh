@@ -2,7 +2,7 @@
 cd /usr/local/115Browser
 ./115Browser --test-type \
     --disable-backgrounding-occluded-windows \
-    --user-data-dir=/etc/115 \
+    --user-data-dir=/config/BrowserUserData \
     --disable-cache \
     --disable-wav-audio \
     --disable-logging \

@@ -9,7 +9,7 @@ ENV HOME=/config
 ENV LD_LIBRARY_PATH=/usr/local/115Browser:\$LD_LIBRARY_PATH
 
 COPY startapp.sh /startapp.sh
-COPY 115.sh /config/115.sh
+COPY 115.sh /115.sh
 
 RUN apt update \
     && apt install -y curl \
@@ -25,12 +25,13 @@ RUN apt update \
     && wget -q -c ${BROWSER_URL} \
     && apt install -y ./${BROWSER_PACKAGE_NAME} \
     && install_app_icon.sh https://union.115.com/static/logo_b.png \
-    && mkdir -p /etc/115 \
-    && chmod 777 -R /etc/115 \
-    && mkdir -p /config/Downloads \
-    && chmod 777 -R /config/Downloads \
     && mkdir -p /config/Desktop \
+    && mkdir -p /config/Downloads \
+    && mkdir -p /config/BrowserUserData \
+    && chmod 777 -R /config \
     && chmod 777 -R /config/Desktop \
+    && chmod 777 -R /config/Downloads \
+    && chmod 777 -R /config/BrowserUserData \
     && cp /usr/share/applications/115Browser.desktop /config/Desktop \
     && sed -i 's/<decor>no<\/decor>/<decor>yes<\/decor>/g' /opt/base/etc/openbox/rc.xml.template \
     && rm ./${BROWSER_PACKAGE_NAME} \
