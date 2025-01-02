@@ -18,7 +18,7 @@
 - 使用以下命令啟動容器（請替換 `<LANG>` 、 `<TZ>` 、 `<PATH>` 為相應的值）：
 ```
 docker run -d \
-    --name 115pc-docker \
+    --name 115pc \
     --restart unless-stopped \
     -e LANG=<LANG> \
     -e TZ=<TZ> \
