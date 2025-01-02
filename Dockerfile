@@ -29,6 +29,7 @@ RUN apt update \
     && chmod 777 -R /config/BrowserUserData \
     && cp /usr/share/applications/115Browser.desktop /config/Desktop \
     && sed -i 's/<decor>no<\/decor>/<decor>yes<\/decor>/g' /opt/base/etc/openbox/rc.xml.template \
+    && sed -i 's/<maximized>true<\/maximized>/<maximized>false<\/maximized>/g' /opt/base/etc/openbox/rc.xml.template \
     && rm ./${BROWSER_PACKAGE_NAME} \
     && rm -rf /var/lib/apt/lists/*
 
