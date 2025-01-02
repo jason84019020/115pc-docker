@@ -1,9 +1,7 @@
 FROM jlesage/baseimage-gui:debian-12-v4
 
-ARG LANGUAGE=zh_TW.UTF-8
-
 ENV APP_NAME=115pc
-ENV LANG=${LANGUAGE}
+ENV LANG=zh_TW.UTF-8
 ENV TZ=Asia/Taipei
 ENV HOME=/config
 ENV LD_LIBRARY_PATH=/usr/local/115Browser:\$LD_LIBRARY_PATH
@@ -15,8 +13,8 @@ RUN apt update \
     libatk-bridge2.0-0 libcups2 libdrm2 libxcomposite1 \
     libxfixes3 libxrandr2 libgbm1 libxkbcommon0 libpango1.0-0 \
     libasound2 libxdamage1 \
-    && locale-gen ${LANGUAGE} \
-    && update-locale LANG=${LANGUAGE} \
+    && locale-gen ${LANG} \
+    && update-locale LANG=${LANG} \
     && export BROWSER_URL=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data."Linux-115chrome".version_url') \
     && export BROWSER_PACKAGE_NAME=$(basename ${BROWSER_URL}) \
     && wget -q -c ${BROWSER_URL} \

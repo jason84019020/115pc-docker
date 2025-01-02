@@ -1,4 +1,7 @@
 #!/bin/sh
+
+lang=$( [ "${LANG}" = "zh_TW.UTF-8" ] && echo "zh_TW" || echo "en-US" )
+
 cd /usr/local/115Browser
 ./115Browser --test-type \
     --disable-backgrounding-occluded-windows \
@@ -25,5 +28,5 @@ cd /usr/local/115Browser
     --disable-heap-profiling \
     --disable-features=IsolateOrigins,site-per-process \
     --disable-smooth-scrolling \
-    --lang=zh-TW \
+    --lang=${lang} \
     --disable-software-rasterizer
