@@ -8,9 +8,6 @@ ENV TZ=Asia/Taipei
 ENV HOME=/config
 ENV LD_LIBRARY_PATH=/usr/local/115Browser:\$LD_LIBRARY_PATH
 
-COPY startapp.sh /startapp.sh
-COPY 115.sh /115.sh
-
 RUN apt update \
     && apt install -y curl \
     jq wget locales locales-all pcmanfm tint2 \
@@ -36,3 +33,6 @@ RUN apt update \
     && sed -i 's/<decor>no<\/decor>/<decor>yes<\/decor>/g' /opt/base/etc/openbox/rc.xml.template \
     && rm ./${BROWSER_PACKAGE_NAME} \
     && rm -rf /var/lib/apt/lists/*
+
+COPY startapp.sh /startapp.sh
+COPY 115.sh /usr/local/115Browser/115.sh

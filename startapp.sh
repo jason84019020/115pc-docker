@@ -1,5 +1,4 @@
 #!/bin/sh
-openbox-session &
-tint2 &
 pcmanfm --desktop &
-/115.sh
+/usr/local/115Browser/115.sh &
+tint2
