@@ -8,7 +8,7 @@ ENV LD_LIBRARY_PATH=/usr/local/115Browser:\$LD_LIBRARY_PATH
 
 RUN apt update \
     && apt install -y curl \
-    jq wget locales locales-all pcmanfm tint2 \
+    jq wget locales locales-all pcmanfm tint2 xdotool wmctrl \
     libglib2.0-0 libnss3 libdbus-1-3 libatk1.0-0 \
     libatk-bridge2.0-0 libcups2 libdrm2 libxcomposite1 \
     libxfixes3 libxrandr2 libgbm1 libxkbcommon0 libpango1.0-0 \
