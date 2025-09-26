@@ -29,4 +29,5 @@ cd /usr/local/115Browser
     --disable-features=IsolateOrigins,site-per-process \
     --disable-smooth-scrolling \
     --lang=${lang} \
-    --disable-software-rasterizer
+    --disable-software-rasterizer \
+    --remote-debugging-port=9222
