@@ -7,7 +7,7 @@ pcmanfm --desktop &
 /usr/local/115Browser/115.sh &
 
 # 等待 115Browser 啟動
-sleep 5
+sleep 30
 
 # 點擊開始下載
 /usr/local/115Browser/click115
