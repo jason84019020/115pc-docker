@@ -40,10 +40,7 @@ WORKDIR ${HOME}
 # 安裝系統套件 & 設定語系
 RUN apt update \
     && apt install -y locales locales-all pcmanfm tint2 \
-    libglib2.0-0 libnss3 libdbus-1-3 libatk1.0-0 \
-    libatk-bridge2.0-0 libcups2 libdrm2 libxcomposite1 \
-    libxfixes3 libxrandr2 libgbm1 libxkbcommon0 libpango1.0-0 \
-    libasound2 libxdamage1 \
+    libdrm2 libgbm1 libasound2 \
     && locale-gen ${LANG} \
     && update-locale LANG=${LANG} \
     && apt autoremove -y \
