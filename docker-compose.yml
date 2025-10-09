@@ -4,7 +4,9 @@ services:
     image: jason84019020/115pc-docker:latest
     restart: unless-stopped
     volumes:
-      - ./downloads:/config/Downloads
+      - ./downloads:/config/browser/downloads
+      - ./user-data:/config/browser/user-data
+      - ./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
     ports:
       - 5900:5900
       - 5800:5800
