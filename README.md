@@ -73,6 +73,19 @@ services:
 | `-v <PATH>:/config/browser/user-data`                                       | 瀏覽器使用者資料（cookies、登入紀錄等）。        |
 | `-v <PATH>:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json` | Cookie 自動載入設定檔。                          |
 
+### Cookie 設定檔範例
+
+將以下內容儲存為 `cookie.json`，再掛載到容器中：
+
+```json
+{
+  "CID": "",
+  "SEID": "",
+  "UID": "",
+  "KID": ""
+}
+```
+
 ## 高級說明
 
 若需了解原始結構與延伸功能，可參考：
