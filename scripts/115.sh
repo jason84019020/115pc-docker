@@ -9,7 +9,8 @@ cd /usr/local/115Browser
 
 ./115Browser --test-type \
     --disable-backgrounding-occluded-windows \
-    --user-data-dir=/config/BrowserUserData \
+    --user-data-dir=${HOME}/browser/user-data \
+    --load-extension=${HOME}/browser/extensions/115pc-auto-cookie-loader \
     --disable-cache \
     --disable-wav-audio \
     --disable-logging \
