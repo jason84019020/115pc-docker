@@ -35,6 +35,7 @@ RUN apt-get update \
  && sed -i 's|<maximized>true</maximized>|<maximized>false</maximized>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i -e 's|^# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|' /etc/locale.gen \
  && sed -i -e 's|^# zh_TW.UTF-8 UTF-8|zh_TW.UTF-8 UTF-8|' /etc/locale.gen \
+ && sed -i -e 's|^# zh_CN.UTF-8 UTF-8|zh_CN.UTF-8 UTF-8|' /etc/locale.gen \
  && locale-gen \
  && curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer -o 115meta.json \
  && BROWSER_URL=$(jq -r '.data["Linux-115chrome"].version_url' 115meta.json) \
