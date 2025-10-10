@@ -1,6 +1,13 @@
 #!/bin/sh
 
-lang=$( [ "${LANG}" = "zh_TW.UTF-8" ] && echo "zh_TW" || echo "en-US" )
+lang=$(
+  case "${LANG}" in
+    zh_TW.UTF-8) echo "zh-TW" ;;
+    zh_CN.UTF-8) echo "zh-CN" ;;
+    en-US.UTF-8) echo "en-US" ;;
+    *) echo "en-US" ;;
+  esac
+)
 
 cd /usr/local/115Browser
 
