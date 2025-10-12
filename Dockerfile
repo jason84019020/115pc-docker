@@ -54,7 +54,7 @@ COPY --from=tool-build /tools/clicker /usr/local/115Browser/clicker
 COPY extensions/115pc-auto-cookie-loader ${HOME}/browser/extensions/115pc-auto-cookie-loader
 COPY scripts/115.sh /usr/local/115Browser/115.sh
 COPY scripts/startapp.sh /startapp.sh
-COPY scripts/init.sh /etc/cont-init.d/50-init.sh
+COPY scripts/clean-singleton.sh /etc/cont-init.d/50-clean-singleton.sh
 
 ARG BROWSER_VERSION
 
