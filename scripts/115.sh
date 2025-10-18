@@ -12,7 +12,7 @@ lang=$(
 cd /usr/local/115Browser
 
 # 調用觸發工具(點擊下載 - 全部開始)
-./clicker &
+(sleep 5 && ./clicker) &
 
 ./115Browser --test-type \
     --disable-backgrounding-occluded-windows \
