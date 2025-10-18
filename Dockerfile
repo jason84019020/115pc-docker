@@ -1,16 +1,13 @@
-FROM golang:bookworm AS tool-build
+FROM node:18-bookworm-slim AS tool-build
 
 WORKDIR /tools
 
-COPY tools/clicker.go clicker.go
+COPY tools/clicker.js clicker.js
+COPY tools/package.json package.json
 
-# 建立 go.mod 並安裝 chromedp，tidy 清理依賴
-RUN go mod init clicker \
- && go get github.com/chromedp/chromedp \
- && go mod tidy
-
-# 編譯成二進位檔，輸出成 clicker
-RUN go build -o clicker clicker.go
+RUN npm install --production
+RUN npm install -g pkg \
+ && pkg clicker.js --output clicker
 
 FROM jlesage/baseimage-gui:debian-12-v4
 
