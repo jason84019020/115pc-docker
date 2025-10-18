@@ -56,7 +56,8 @@ COPY scripts/115.sh /usr/local/115Browser/115.sh
 COPY scripts/startapp.sh /startapp.sh
 COPY scripts/clean-singleton.sh /etc/cont-init.d/50-clean-singleton.sh
 
-ARG BROWSER_VERSION
+ARG IMAGE_BROWSER_VERSION
+ARG IMAGE_CREATED
 
-LABEL org.opencontainers.image.115browser-version="${BROWSER_VERSION}"
-LABEL org.opencontainers.image.created="$(date +'%Y-%m-%dT%H:%M:%S%:z')"
+LABEL org.opencontainers.image.115browser-version="${IMAGE_BROWSER_VERSION}"
+LABEL org.opencontainers.image.created="$IMAGE_CREATED"
