@@ -9,4 +9,4 @@ tint2 &
 # 啟動 115Browser
 /usr/local/115Browser/115.sh &
 
-tail -f /dev/null
+sleep infinity
