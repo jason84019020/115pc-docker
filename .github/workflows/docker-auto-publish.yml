@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker-auto-publish:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       # 1️⃣ 取回程式碼
       - name: Checkout code
