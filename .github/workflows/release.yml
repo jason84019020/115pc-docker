@@ -3,7 +3,7 @@ name: Release CI
 on:
   push:
     branches:
-      - main
+      - develop
 
 permissions:
   contents: write
@@ -20,3 +20,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
+          target-branch: develop
