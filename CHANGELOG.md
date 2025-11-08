@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.4](https://github.com/jason84019020/115pc-docker/compare/2.1.3...v2.1.4) (2025-11-08)
+
+
+### Bug Fixes
+
+* test ci ([3e983e1](https://github.com/jason84019020/115pc-docker/commit/3e983e1138a5ddb7df0e5d3fa759b28814930463))
+
 ## [2.1.3](https://github.com/jason84019020/115pc-docker/compare/2.1.2...2.1.3) (2025-10-18)
 
 
