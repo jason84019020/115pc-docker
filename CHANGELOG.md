@@ -5,7 +5,7 @@
 
 ### Bug Fixes
 
-- 調整觸發工具 ([cfacfcf](https://github.com/jason84019020/115pc-docker/commit/cfacfcffee4bf88b57e26e48271116f5325632e5))
+* 調整觸發工具 ([cfacfcf](https://github.com/jason84019020/115pc-docker/commit/cfacfcffee4bf88b57e26e48271116f5325632e5))
 
 ## [2.1.2](https://github.com/jason84019020/115pc-docker/compare/2.1.1...2.1.2) (2025-10-18)
 
