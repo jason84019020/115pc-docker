@@ -16,7 +16,7 @@
 - /config/Downloads 目錄用於下載和存儲管理
 - 基於 jlesage/docker-baseimage-gui，提供完整桌面環境
 - 適用於伺服器、NAS 或雲端平台，輕鬆遠端管理下載任務
-- <span style="color:red">**(new)**</span> 啟動後自動開啟瀏覽器並開始下載
+- <span style="color:red">**(new)**</span> 啟動時自動開啟下載
 - <span style="color:red">**(new)**</span> 支援 Cookie 登入
 
 ## 使用方法

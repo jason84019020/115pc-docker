@@ -1,4 +1,4 @@
 [submodule "extensions/115pc-auto-cookie-loader"]
-    path = extensions/115pc-auto-cookie-loader
-    url = git@github.com:jason84019020/115pc-auto-cookie-loader.git
-    branch = main
+	path = extensions/115pc-auto-cookie-loader
+	url = https://github.com/jason84019020/115pc-auto-cookie-loader.git
+	branch = main

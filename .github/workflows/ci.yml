@@ -1,0 +1,74 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      # 1️⃣ Checkout 程式碼
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      # # 2️⃣ 設定 Node.js（for semantic-release）
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 24
+
+      # # 3️⃣ 安裝依賴
+      # - name: Install dependencies
+      #   run: npm ci
+
+      # # 4️⃣ 執行 semantic-release（建立新 tag）
+      # - name: Run semantic-release
+      #   id: semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GIT_AUTHOR_NAME: github-actions[bot]
+      #     GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+      #     GIT_COMMITTER_NAME: github-actions[bot]
+      #     GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+      #   run: |
+      #     npm run semantic-release
+      #     VERSION=$(cat VERSION)
+      #     echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      # # 5️⃣ 整理 dockerfile build args
+      # - name: Set Docker build arguments
+      #   id: docker-arg
+      #   run: |
+      #     IMAGE_BROWSER_VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
+      #     IMAGE_CREATED=$(date -u -d '+8 hours' +"%Y-%m-%dT%H:%M:%SZ")
+      #     echo $IMAGE_BROWSER_VERSION
+      #     echo $IMAGE_CREATED
+      #     echo "IMAGE_BROWSER_VERSION=$IMAGE_BROWSER_VERSION" >> $GITHUB_OUTPUT
+      #     echo "IMAGE_CREATED=$IMAGE_CREATED" >> $GITHUB_OUTPUT
+
+      # # 6️⃣ 登入 Docker Hub
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # # 7️⃣ 使用 build-push-action 建立並推送鏡像
+      # # steps.semantic-release.outputs.VERSION
+      # - name: Build and Push Docker image
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile
+      #     push: true
+      #     tags: |
+      #       ${{ secrets.DOCKERHUB_USERNAME }}/115pc-docker:test
+      #     build-args: |
+      #       IMAGE_BROWSER_VERSION=${{ steps.docker-arg.outputs.IMAGE_BROWSER_VERSION }}
+      #       IMAGE_CREATED=${{ steps.docker-arg.outputs.IMAGE_CREATED }}
