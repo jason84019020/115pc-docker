@@ -54,6 +54,10 @@ COPY scripts/115.sh /usr/local/115Browser/115.sh
 COPY scripts/startapp.sh /startapp.sh
 COPY scripts/clean-singleton.sh /etc/cont-init.d/50-clean-singleton.sh
 
+RUN chmod +x /usr/local/115Browser/115.sh \
+ && chmod +x /startapp.sh \
+ && chmod +x /etc/cont-init.d/50-clean-singleton.sh
+
 ARG IMAGE_BROWSER_VERSION
 ARG IMAGE_CREATED
 
