@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "ts-node": "ts-node",
+    "esbuild": "esbuild"
+  },
+  "dependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "axios": "^1.13.2",
+    "cli-progress": "^3.12.0",
+    "puppeteer-core": "^24.31.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "esbuild": "^0.27.0",
+    "gts": "^6.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.1.0"
+  }
+}
