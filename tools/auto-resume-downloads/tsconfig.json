@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
+    "rootDir": ".",
+    "outDir": "build"
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"],
+  "files": ["src/lib/types.d.ts"]
+}
