@@ -11,8 +11,8 @@ lang=$(
 
 cd /usr/local/115Browser
 
-# 調用觸發工具(點擊下載 - 全部開始)
-./clicker &
+# 調用觸發恢復下載
+node --no-deprecation ./tools/auto-resume-downloads.js &
 
 ./115Browser --test-type \
     --disable-backgrounding-occluded-windows \
@@ -42,5 +42,4 @@ cd /usr/local/115Browser
     --disable-smooth-scrolling \
     --lang=${lang} \
     --disable-software-rasterizer \
-    --remote-debugging-port=9222 \
-    --remote-allow-origins=*
+    --remote-debugging-port=9222
