@@ -42,5 +42,4 @@ node --no-deprecation ./tools/auto-resume-downloads.js &
     --disable-smooth-scrolling \
     --lang=${lang} \
     --disable-software-rasterizer \
-    --remote-debugging-port=9222 \
-    --remote-allow-origins=*
+    --remote-debugging-port=9222
