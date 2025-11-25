@@ -3,7 +3,7 @@ name: Release CI
 on:
   push:
     branches:
-      - main
+      - develop
 
 permissions:
   contents: write
@@ -21,6 +21,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           release-type: simple
+          target-branch: develop
   docker-publish:
     runs-on: ubuntu-latest
     needs: release-please
