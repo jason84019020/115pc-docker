@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.4](https://github.com/jason84019020/115pc-docker/compare/2.1.3...v2.1.4) (2025-11-25)
+
+
+### Bug Fixes
+
+* 修正檔案權限不足 ([ce5917b](https://github.com/jason84019020/115pc-docker/commit/ce5917be60e1e333a2c287dccb3fd388eebd39e8))
+* 移除瀏覽器啟動時無用參數 ([a5e6f16](https://github.com/jason84019020/115pc-docker/commit/a5e6f16ca4d62b1cd1196b7c92b6027fa2e1fb7a))
+
 ## [2.1.3](https://github.com/jason84019020/115pc-docker/compare/2.1.2...2.1.3) (2025-10-18)
 
 
