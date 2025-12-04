@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.4](https://github.com/jason84019020/115pc-docker/compare/v2.1.3...v2.1.4) (2025-12-04)
+
+
+### Bug Fixes
+
+* 修正 dockerfile 權限 & 路徑 ([86c3573](https://github.com/jason84019020/115pc-docker/commit/86c3573213493b29a7e69b406f027df317f725da))
+* 修正群組缺失問題 ([cdf4b5f](https://github.com/jason84019020/115pc-docker/commit/cdf4b5f63350afa61d4deebcb3438c53ced1c332))
+* 移除瀏覽器啟動時無用參數 ([50991f9](https://github.com/jason84019020/115pc-docker/commit/50991f9274efbacf0d2dcb060cb6a7a3eda0ed0a))
+
 ## [2.1.3](https://github.com/jason84019020/115pc-docker/compare/2.1.2...2.1.3) (2025-10-18)
 
 
