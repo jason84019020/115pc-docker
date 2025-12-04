@@ -1,13 +1,14 @@
 name: Docker Auto Publish
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 jobs:
   docker-auto-publish:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE_NAME: 115pc-docker
     steps:
       # 1️⃣ 取回程式碼
       - name: Checkout code
@@ -20,7 +21,8 @@ jobs:
       - name: Determine version
         id: version
         run: |
-          VERSION="${GITHUB_REF#refs/tags/}"
+          TAG_NAME=${{ github.event.release.tag_name }}
+          VERSION=${TAG_NAME#v}
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION"
 
@@ -29,9 +31,11 @@ jobs:
         id: docker-arg
         run: |
           IMAGE_BROWSER_VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
-          IMAGE_CREATED=$(date -u -d '+8 hours' +"%Y-%m-%dT%H:%M:%SZ")
+          IMAGE_CREATED=$(TZ=Asia/Taipei date +"%Y-%m-%dT%H:%M:%SZ")
           echo "IMAGE_BROWSER_VERSION=$IMAGE_BROWSER_VERSION" >> $GITHUB_OUTPUT
+          echo "IMAGE_BROWSER_VERSION=$IMAGE_BROWSER_VERSION"
           echo "IMAGE_CREATED=$IMAGE_CREATED" >> $GITHUB_OUTPUT
+          echo "IMAGE_CREATED=$IMAGE_CREATED"
 
       # 4️⃣ 登入 Docker Hub
       - name: Login to Docker Hub
@@ -48,8 +52,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/115pc-docker:${{ steps.version.outputs.VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/115pc-docker:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
           build-args: |
             IMAGE_BROWSER_VERSION=${{ steps.docker-arg.outputs.IMAGE_BROWSER_VERSION }}
             IMAGE_CREATED=${{ steps.docker-arg.outputs.IMAGE_CREATED }}

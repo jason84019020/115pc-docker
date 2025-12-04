@@ -1,0 +1,18 @@
+services:
+  115pc-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - IMAGE_BROWSER_VERSION=X.Y.Z
+        - IMAGE_CREATED=2025-01-01T00:00:00Z
+    restart: unless-stopped
+    environment:
+      - DISPLAY=:0
+    volumes:
+      - ./downloads:/config/browser/downloads
+      - ./user-data:/config/browser/user-data
+      - ./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
+    ports:
+      - 5900:5900
+      - 5800:5800
