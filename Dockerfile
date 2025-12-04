@@ -23,6 +23,7 @@ RUN mkdir -p ${HOME}/Desktop \
              ${HOME}/browser/downloads \
              ${HOME}/browser/user-data \
              ${HOME}/browser/extensions \
+             ${HOME}/system/scripts \
  && chmod -R 755 ${HOME} \
  && ln -sf ${HOME}/browser/downloads ${HOME}/Downloads
 
@@ -55,10 +56,13 @@ COPY extensions/115pc-auto-cookie-loader ${HOME}/browser/extensions/115pc-auto-c
 COPY scripts/115.sh /usr/local/115Browser/115.sh
 COPY scripts/startapp.sh /startapp.sh
 COPY scripts/clean-singleton.sh /etc/cont-init.d/50-clean-singleton.sh
+COPY scripts/restore-groups-and-users.sh ${HOME}/system/scripts/restore-groups-and-users.sh
 
 RUN chmod 755 /usr/local/115Browser/115.sh \
  && chmod 755 /startapp.sh \
- && chmod 755 /etc/cont-init.d/50-clean-singleton.sh
+ && chmod 755 /etc/cont-init.d/50-clean-singleton.sh \
+ && chmod 755 ${HOME}/system/scripts/restore-groups-and-users.sh \
+ && /bin/sh ${HOME}/system/scripts/restore-groups-and-users.sh
 
 ARG IMAGE_BROWSER_VERSION
 ARG IMAGE_CREATED
