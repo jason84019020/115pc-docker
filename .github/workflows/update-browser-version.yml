@@ -1,12 +1,12 @@
 name: Update Browser Version
 
 # 手動觸發
-# on:
-#   workflow_dispatch:
 on:
-  push:
-    branches:
-      - test   # 或你希望觸發的分支
+  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - test   # 或你希望觸發的分支
 
 jobs:
   update-browser-version:
@@ -22,20 +22,12 @@ jobs:
             BROWSER_VERSION
           sparse-checkout-cone-mode: false
 
-      - name: test
+      # 2️⃣ 取得最新版本並更新檔案
+      - name: Update BROWSER_VERSION file
         run: |
-          cat BROWSER_VERSION
-          VERSION=1.2.3
+          VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
           echo "$VERSION" > BROWSER_VERSION
           cat BROWSER_VERSION
-          git diff
-
-      # # 2️⃣ 取得最新版本並更新檔案
-      # - name: Update BROWSER_VERSION file
-      #   run: |
-      #     VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
-      #     echo "$VERSION" > BROWSER_VERSION
-      #     cat BROWSER_VERSION
 
       # 3️⃣ 建立 PR
       - name: Create Pull Request
