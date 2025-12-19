@@ -23,10 +23,12 @@ jobs:
 
       # 2️⃣ 取得最新版本並更新檔案
       - name: Update BROWSER_VERSION file
+        id: update-browser-version
         run: |
           VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
           echo "$VERSION" > BROWSER_VERSION
-          cat BROWSER_VERSION
+          echo "$VERSION" >> $GITHUB_OUTPUT
+          echo "$VERSION"
 
       # 3️⃣ 取得 GitHub 使用者顯示名稱
       - name: Get GitHub Profile Name
@@ -43,8 +45,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: "fix: 更新 BROWSER_VERSION"
-          branch: update-browser-version-${{ github.run_id }}
-          title: "fix: 更新 BROWSER_VERSION"
+          commit-message: "fix: update BROWSER_VERSION to ${{ steps.update-browser-version.outputs.VERSION }}"
+          branch: fix/browser-version-${{ github.run_id }}
+          title: "fix: update BROWSER_VERSION to ${{ steps.update-browser-version.outputs.VERSION }}"
           body: "此 PR 由 GitHub Actions 自動建立，用於更新 BROWSER_VERSION 檔案。"
           author: ${{ steps.github-profile.outputs.ACTOR_NAME }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
