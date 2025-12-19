@@ -1,0 +1,36 @@
+name: Update Browser Version
+
+# 手動觸發
+on:
+  workflow_dispatch:
+
+jobs:
+  update-browser-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ 取得 repo，只抓 BROWSER_VERSION
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sparse-checkout: |
+            BROWSER_VERSION
+          sparse-checkout-cone-mode: false
+
+      # 2️⃣ 取得最新版本並更新檔案
+      - name: Update BROWSER_VERSION file
+        run: |
+          VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
+          echo "$VERSION" > BROWSER_VERSION
+          cat BROWSER_VERSION
+
+      # 3️⃣ 建立 PR
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "fix: 更新 BROWSER_VERSION"
+          branch: update-browser-version-${{ github.run_id }}
+          title: "自動更新 BROWSER_VERSION"
+          body: "此 PR 由 GitHub Actions 自動建立，用於更新 BROWSER_VERSION 檔案。"
