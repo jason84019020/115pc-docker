@@ -23,7 +23,11 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: test
-        run: ls -al
+        run: |
+          cat BROWSER_VERSION
+          VERSION=1.2.3
+          echo "$VERSION" > BROWSER_VERSION
+          cat BROWSER_VERSION
 
       # # 2️⃣ 取得最新版本並更新檔案
       # - name: Update BROWSER_VERSION file
