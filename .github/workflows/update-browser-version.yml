@@ -1,8 +1,12 @@
 name: Update Browser Version
 
 # 手動觸發
+# on:
+#   workflow_dispatch:
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - test   # 或你希望觸發的分支
 
 jobs:
   update-browser-version:
