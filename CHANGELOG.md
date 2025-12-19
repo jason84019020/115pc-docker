@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.5](https://github.com/jason84019020/115pc-docker/compare/v2.1.4...v2.1.5) (2025-12-19)
+
+
+### Bug Fixes
+
+* update BROWSER_VERSION to 36.0.0 ([0df9099](https://github.com/jason84019020/115pc-docker/commit/0df9099d25926a6423f15b236d3263345873d1ef))
+* update BROWSER_VERSION to 36.0.0 ([7230fc5](https://github.com/jason84019020/115pc-docker/commit/7230fc54a969f3c0175a62754eaa5ee041190600))
+
 ## [2.1.4](https://github.com/jason84019020/115pc-docker/compare/v2.1.3...v2.1.4) (2025-12-04)
 
 
