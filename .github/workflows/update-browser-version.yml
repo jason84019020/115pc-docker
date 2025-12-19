@@ -28,6 +28,16 @@ jobs:
           echo "$VERSION" > BROWSER_VERSION
           cat BROWSER_VERSION
 
+      - name: Get GitHub Profile Name
+        id: github-profile
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ACTOR_NAME="$(gh api /users/${GITHUB_ACTOR} | jq .name -r)"
+          ACTOR_NAME="${ACTOR_NAME:-$GITHUB_ACTOR}"
+          echo "ACTOR_NAME=$ACTOR_NAME" >> $GITHUB_OUTPUT
+          echo "ACTOR_NAME=$ACTOR_NAME"
+
       # 3️⃣ 建立 PR
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
