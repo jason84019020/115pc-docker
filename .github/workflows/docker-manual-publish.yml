@@ -31,7 +31,7 @@ jobs:
       - name: Set Docker build arguments
         id: docker-arg
         run: |
-          IMAGE_BROWSER_VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
+          IMAGE_BROWSER_VERSION=$(cat BROWSER_VERSION)
           IMAGE_CREATED=$(date -u -d '+8 hours' +"%Y-%m-%dT%H:%M:%SZ")
           echo "IMAGE_BROWSER_VERSION=$IMAGE_BROWSER_VERSION" >> $GITHUB_OUTPUT
           echo "IMAGE_CREATED=$IMAGE_CREATED" >> $GITHUB_OUTPUT
