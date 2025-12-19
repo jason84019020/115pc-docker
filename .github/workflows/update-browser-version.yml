@@ -27,8 +27,8 @@ jobs:
         run: |
           VERSION=$(curl -s https://appversion.115.com/1/web/1.0/api/getMultiVer | jq -r '.data["Linux-115chrome"].version_code')
           echo "$VERSION" > BROWSER_VERSION
-          echo "$VERSION" >> $GITHUB_OUTPUT
-          echo "$VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION"
 
       # 3️⃣ 取得 GitHub 使用者顯示名稱
       - name: Get GitHub Profile Name
