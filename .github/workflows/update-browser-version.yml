@@ -35,5 +35,5 @@ jobs:
         with:
           commit-message: "fix: update BROWSER_VERSION to ${{ steps.update-browser-version.outputs.VERSION }}"
           branch: fix/browser-version-${{ github.run_id }}
-          title: "fix: update BROWSER_VERSION to ${{ steps.update-browser-version.outputs.VERSION }}"
+          title: "From fix/browser-version-${{ github.run_id }} into main"
           body: "此 PR 由 GitHub Actions 自動建立，用於更新 BROWSER_VERSION 檔案。"
