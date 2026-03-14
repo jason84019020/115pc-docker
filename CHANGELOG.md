@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/jason84019020/115pc-docker/compare/v2.1.5...v2.2.0) (2026-03-14)
+
+
+### Features
+
+* 升級基礎映像檔並優化環境變數 ([d2a202f](https://github.com/jason84019020/115pc-docker/commit/d2a202fa5ba7c54f406afa01c32094bb40d52cc6))
+
 ## [2.1.5](https://github.com/jason84019020/115pc-docker/compare/v2.1.4...v2.1.5) (2025-12-19)
 
 
