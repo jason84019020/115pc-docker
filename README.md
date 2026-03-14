@@ -94,10 +94,3 @@ services:
 
 - [dream10201/115Docker](https://github.com/dream10201/115Docker) - 原始 115 PC Linux 環境設定
 - [jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui) - 提供強大的 Docker GUI 基礎底層
-
-**本版本主要改進**：
-
-- 重構啟動腳本
-- 優化 LD_LIBRARY_PATH 加載邏輯
-- 升級基礎系統至 Debian 13 (Trixie)
-- 支援自定義 SSL 憑證以開啟剪貼簿同步功能
