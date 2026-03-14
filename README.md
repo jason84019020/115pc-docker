@@ -5,97 +5,99 @@
 [![Docker Stars](https://img.shields.io/docker/stars/jason84019020/115pc-docker.svg?style=flat-square&label=Stars&logo=docker)](https://hub.docker.com/r/jason84019020/115pc-docker)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jason84019020/115pc-docker.svg?style=flat-square&label=Pulls&logo=docker&color=orange)](https://hub.docker.com/r/jason84019020/115pc-docker)
 
-## 專案簡介
+本專案提供一個高度優化的 **115 電腦版客戶端** Docker 映像檔，讓您能在 NAS、伺服器或任何支援 Docker 的平台上，透過瀏覽器遠端管理 115 下載任務。
 
-該專案是基於 [dream10201/115Docker](https://github.com/dream10201/115Docker) 與 [jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui) 整合、優化後的版本。
+## ✨ 核心特色
 
-## 功能
+- 🖥️ **完整圖形介面**：支援透過網頁 (HTTP/HTTPS 5800) 或 VNC (5900) 操作。
+- 🚀 **自動化啟動**：容器啟動即自動開啟下載任務，無需手動介入。
+- 🔑 **Cookie 登入**：支援免密碼透過 `cookie.json` 快速登入。
+- 🌐 **語系支援**：預設優化繁體中文 (zh_TW) 與時區設定。
+- 📋 **剪貼簿同步**：支援宿主機與容器間的雙向剪貼簿同步（需開啟 HTTPS）。
+- 🏗️ **基礎升級**：基於 Debian 13 (Trixie) 構建，提供更現代的執行環境。
 
-- 可透過 VNC 或瀏覽器 (5800/5900 port) 操作完整圖形介面
-- 支援多語系與時區設定
-- /config/Downloads 目錄用於下載和存儲管理
-- 基於 jlesage/docker-baseimage-gui，提供完整桌面環境
-- 適用於伺服器、NAS 或雲端平台，輕鬆遠端管理下載任務
-- <span style="color:red">**(new)**</span> 啟動時自動開啟下載
-- <span style="color:red">**(new)**</span> 支援 Cookie 登入
+## 🚀 快速開始
 
-## 使用方法
+### Docker Compose (建議)
 
-### Docker CLI
+建立 `docker-compose.yaml` 並執行 `docker-compose up -d`：
 
-- 使用以下命令啟動容器（請替換 `<LANG>` 、 `<TZ>` 、 `<PATH>` 為相應的值）：
-
-```
-docker run -d \
-    --name 115pc \
-    --restart unless-stopped \
-    -e LANG=<LANG> \
-    -e TZ=<TZ> \
-    -p 5800:5800 \
-    -p 5900:5900 \
-    -v <PATH>:/config/browser/downloads \
-    -v <PATH>:/config/browser/user-data \
-    -v <PATH>:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json \
-    jason84019020/115pc-docker:latest
-```
-
-### Docker Compose
-
-```
+```yaml
 services:
   115pc:
     container_name: 115pc
     image: jason84019020/115pc-docker:latest
     restart: unless-stopped
+    ports:
+      - 5800:5800
+      - 5900:5900
+    environment:
+      - SECURE_CONNECTION=1 # 若要使用 HTTPS/剪貼簿同步，請設為 1
+      # - LANG=en_US.UTF-8  # 預設為 zh_TW.UTF-8，可依需求修改
+      # - TZ=Asia/Singapore # 預設為 Asia/Taipei，可依需求修改
     volumes:
+      - ./certs:/config/certs # 剪貼簿同步必備：掛載憑證目錄
       - ./downloads:/config/browser/downloads
       - ./user-data:/config/browser/user-data
       - ./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
-    ports:
-      - 5900:5900
-      - 5800:5800
 ```
 
-#### 訪問容器
+### 訪問方式
 
-- 可以通過 VNC 訪問容器的 GUI，端口 5800（HTTP）或 5900（VNC）。
-  > 確保防火牆允許開放端口 5800 和 5900。
+- Web 介面：http://<IP>:5800 (或使用 HTTPS 以啟用完整功能)
 
-## 參數
+- VNC 客戶端：<IP>:5900
 
-| 參數                                                                        | 功能                                             |
-| --------------------------------------------------------------------------- | ------------------------------------------------ |
-| `-e LANG=<LANG>`                                                            | 設置系統語言（例如：en_US.UTF-8、zh_TW.UTF-8）。 |
-| `-e TZ=<TZ>`                                                                | 設置時區（例如：Asia/Taipei）。                  |
-| `-p 5800:5800`                                                              | 綁定 GUI 訪問端口（HTTP）用於 VNC。              |
-| `-p 5900:5900`                                                              | 綁定 GUI 訪問端口（VNC）。                       |
-| `-v <PATH>:/config/browser/downloads`                                       | 下載存放路徑。                                   |
-| `-v <PATH>:/config/browser/user-data`                                       | 瀏覽器使用者資料（cookies、登入紀錄等）。        |
-| `-v <PATH>:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json` | Cookie 自動載入設定檔。                          |
+## 📋 剪貼簿同步與 HTTPS 功能
 
-### Cookie 設定檔範例
+為了在瀏覽器中使用剪貼簿同步，現代瀏覽器安全規範要求必須在 HTTPS 模式下執行。
 
-將以下內容儲存為 `cookie.json`，再掛載到容器中：
+1. 產生憑證：請使用 [internal-cert-tool](https://github.com/jason84019020/internal-cert-tool) 產生憑證。
+
+2. 配置與更名：將工具產出的檔案放入 ./certs 資料夾，並依照下表重新命名：
+   | 工具產出原始檔名 | 容器識別檔名 (請更名為) | 說明 |
+   | -------------- | ---------------------- | --- |
+   | bundle.pem | vnc-server.pem | VNC 服務端憑證 |
+   | fullchain.pem | web-fullchain.pem | Web 介面完整鏈憑證 |
+   | privkey.pem | web-privkey.pem | Web 介面私鑰 |
+
+3. 啟用設定：確保環境變數 SECURE_CONNECTION=1 已設定。
+
+4. 重啟容器：重啟後即可透過 https://<IP>:5800 開啟支援剪貼簿同步的圖形介面。
+
+## ⚙️ 配置參數
+
+| 參數                                                              | 必填 | 預設值        | 說明                                                             |
+| ----------------------------------------------------------------- | ---- | ------------- | ---------------------------------------------------------------- |
+| `LANG`                                                            | ✘    | `zh_TW.UTF-8` | 設置系統語言（支援 `en_US.UTF-8`, `zh_CN.UTF-8`, `zh_TW.UTF-8`） |
+| `TZ`                                                              | ✘    | `Asia/Taipei` | 設置時區（例如：`Asia/Singapore`）                               |
+| `SECURE_CONNECTION`                                               | ✘    | 0             | 是否啟用 HTTPS 加密連線 (0: 關閉 / 1: 開啟)                      |
+| `/config/certs`                                                   | ✘    | (掛載)        | 啟用 HTTPS 時需掛載憑證                                          |
+| `/config/browser/downloads`                                       | ✔    | (掛載)        | 115 下載檔案存放路徑                                             |
+| `/config/browser/user-data`                                       | ✔    | (掛載)        | 儲存瀏覽器設定                                                   |
+| `/config/browser/extensions/115pc-auto-cookie-loader/cookie.json` | ✘    | (掛載)        | 自動登入用的 Cookie 檔案                                         |
+
+### Cookie.json 範例
 
 ```json
 {
-  "CID": "",
-  "SEID": "",
-  "UID": "",
-  "KID": ""
+  "CID": "YOUR_CID",
+  "SEID": "YOUR_SEID",
+  "UID": "YOUR_UID",
+  "KID": "YOUR_KID"
 }
 ```
 
-## 高級說明
+## 🛠️ 開發與致謝
 
-若需了解原始結構與延伸功能，可參考：
+本專案基於以下優秀專案進行整合、優化與 Bug 修正：
 
-- [dream10201/115Docker](https://github.com/dream10201/115Docker) — 原始 115 PC 環境設定
-- [jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui) — 基礎 GUI Docker 映像
+- [dream10201/115Docker](https://github.com/dream10201/115Docker) - 原始 115 PC Linux 環境設定
+- [jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui) - 提供強大的 Docker GUI 基礎底層
 
-本專案在其基礎上進行整合與優化，主要改進如下：
+**本版本主要改進**：
 
-- 改良啟動腳本與容器行為（更穩定）
-- 調整配置結構，使掛載路徑更直覺
-- 更新桌面環境設定以改善顯示效果
-- 預設支援繁體中文與多語系介面
+- 重構啟動腳本
+- 優化 LD_LIBRARY_PATH 加載邏輯
+- 升級基礎系統至 Debian 13 (Trixie)
+- 支援自定義 SSL 憑證以開啟剪貼簿同步功能

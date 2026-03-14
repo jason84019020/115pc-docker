@@ -1,4 +1,4 @@
-FROM node:25-bookworm-slim AS tool-build
+FROM node:25-trixie-slim AS tool-build
 
 FROM tool-build AS auto-resume-downloads
 
@@ -11,13 +11,13 @@ RUN cp .env.example .env \
  && npm run compile \
  && npm run build
 
-FROM jlesage/baseimage-gui:debian-12-v4
+FROM jlesage/baseimage-gui:debian-13-v4
 
 ENV APP_NAME=115pc
 ENV LANG=zh_TW.UTF-8
 ENV TZ=Asia/Taipei
 ENV HOME=/config
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/115Browser
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}/usr/local/115Browser
 
 ARG IMAGE_BROWSER_VERSION
 ARG IMAGE_CREATED
@@ -27,6 +27,7 @@ RUN mkdir -p ${HOME}/Desktop \
              ${HOME}/browser/user-data \
              ${HOME}/browser/extensions \
              ${HOME}/system/scripts \
+             ${HOME}/certs \
  && chmod -R 755 ${HOME} \
  && ln -sf ${HOME}/browser/downloads ${HOME}/Downloads
 

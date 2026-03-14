@@ -1,9 +1,16 @@
 services:
-  115pc:
-    container_name: 115pc
-    image: jason84019020/115pc-docker:latest
+  115pc-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - IMAGE_BROWSER_VERSION=X.Y.Z
+        - IMAGE_CREATED=2026-01-01T00:00:00Z
     restart: unless-stopped
+    environment:
+      - DISPLAY=:0
     volumes:
+      - ./certs:/config/certs
       - ./downloads:/config/browser/downloads
       - ./user-data:/config/browser/user-data
       - ./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
