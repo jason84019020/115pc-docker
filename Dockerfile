@@ -34,7 +34,7 @@ RUN mkdir -p ${HOME}/Desktop \
 WORKDIR ${HOME}
 
 RUN apt-get update \
- && apt-get install -y wget locales pcmanfm tint2 libdrm2 libgbm1 libasound2 libatomic1 \
+ && apt-get install -y wget locales pcmanfm tint2 libasound2t64 \
  && sed -i 's|<decor>no</decor>|<decor>yes</decor>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i 's|<maximized>true</maximized>|<maximized>false</maximized>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i -e 's|^# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|' /etc/locale.gen \
@@ -46,7 +46,7 @@ RUN apt-get update \
  && wget -q -c ${BROWSER_URL} \
  && dpkg -i ${BROWSER_PACKAGE_NAME} \
  && cp /usr/share/applications/115Browser.desktop ${HOME}/Desktop \
- && install_app_icon.sh https://union.115.com/static/logo_b.png \
+ && install_app_icon.sh "https://union.115.com/static/logo_b.png" \
  && apt-get autoremove -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
