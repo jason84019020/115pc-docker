@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.1](https://github.com/jason84019020/115pc-docker/compare/v2.2.0...v2.2.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* 針對 Debian 13 更新瀏覽器依賴庫與下載指令 ([e7d24b0](https://github.com/jason84019020/115pc-docker/commit/e7d24b0c0c9dcf1b71f101e225c1e095ea77bf83))
+* 針對 Debian 13 更新瀏覽器依賴庫與下載指令 ([b1aa6ce](https://github.com/jason84019020/115pc-docker/commit/b1aa6cea0ec260a6df3ca88f8dd70329c4188ad1))
+
 ## [2.2.0](https://github.com/jason84019020/115pc-docker/compare/v2.1.5...v2.2.0) (2026-03-14)
 
 
