@@ -31,6 +31,7 @@ jobs:
 
       # 3️⃣ 建立 PR
       - name: Create Pull Request
+        if: ${{ steps.update-browser-version.outputs.VERSION != '' }}
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "fix: update BROWSER_VERSION to ${{ steps.update-browser-version.outputs.VERSION }}"
