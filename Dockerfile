@@ -23,6 +23,8 @@ ARG IMAGE_BROWSER_VERSION
 ARG IMAGE_CREATED
 
 RUN mkdir -p ${HOME}/Desktop \
+             ${HOME}/log \
+             ${HOME}/var/tmp \
              ${HOME}/browser/downloads \
              ${HOME}/browser/user-data \
              ${HOME}/browser/extensions \
@@ -33,8 +35,9 @@ RUN mkdir -p ${HOME}/Desktop \
 
 WORKDIR ${HOME}
 
-RUN apt-get update \
- && apt-get install -y wget locales pcmanfm tint2 libasound2t64 \
+RUN export LANG=C.UTF-8 \
+ && apt-get update \
+ && apt-get install --no-install-recommends -y wget locales systemd ca-certificates pcmanfm tint2 libasound2t64 \
  && sed -i 's|<decor>no</decor>|<decor>yes</decor>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i 's|<maximized>true</maximized>|<maximized>false</maximized>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i -e 's|^# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|' /etc/locale.gen \
@@ -68,4 +71,4 @@ RUN chmod 755 /usr/local/115Browser/115.sh \
 RUN /bin/sh ${HOME}/system/scripts/restore-groups-and-users.sh
 
 LABEL org.opencontainers.image.115browser-version="${IMAGE_BROWSER_VERSION}"
-LABEL org.opencontainers.image.created="$IMAGE_CREATED"
+LABEL org.opencontainers.image.created="${IMAGE_CREATED}"
