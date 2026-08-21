@@ -37,21 +37,20 @@ WORKDIR ${HOME}
 
 RUN export LANG=C.UTF-8 \
  && apt-get update \
- && apt-get install --no-install-recommends -y wget locales systemd ca-certificates pcmanfm tint2 libasound2t64 \
+ && apt-get install --no-install-recommends -y systemd wget locales ca-certificates fonts-noto-cjk pcmanfm tint2 \
+ && BROWSER_URL="https://down.115.com/client/115pc/lin/115br_v${IMAGE_BROWSER_VERSION}.deb" \
+ && BROWSER_PACKAGE_NAME="115br_v${IMAGE_BROWSER_VERSION}.deb" \
+ && wget -q -O "${BROWSER_PACKAGE_NAME}" "${BROWSER_URL}" \
+ && apt-get install --no-install-recommends -y "./${BROWSER_PACKAGE_NAME}" \
  && sed -i 's|<decor>no</decor>|<decor>yes</decor>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i 's|<maximized>true</maximized>|<maximized>false</maximized>|g' /opt/base/etc/openbox/rc.xml.template \
  && sed -i -e 's|^# en_US.UTF-8 UTF-8|en_US.UTF-8 UTF-8|' /etc/locale.gen \
  && sed -i -e 's|^# zh_TW.UTF-8 UTF-8|zh_TW.UTF-8 UTF-8|' /etc/locale.gen \
  && sed -i -e 's|^# zh_CN.UTF-8 UTF-8|zh_CN.UTF-8 UTF-8|' /etc/locale.gen \
  && locale-gen \
- && BROWSER_URL="https://down.115.com/client/115pc/lin/115br_v${IMAGE_BROWSER_VERSION}.deb" \
- && BROWSER_PACKAGE_NAME=$(basename ${BROWSER_URL}) \
- && wget -q -c ${BROWSER_URL} \
- && dpkg -i ${BROWSER_PACKAGE_NAME} \
+ && fc-cache -f -v \
  && cp /usr/share/applications/115Browser.desktop ${HOME}/Desktop \
  && install_app_icon.sh "https://union.115.com/static/logo_b.png" \
- && apt-get autoremove -y \
- && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && rm -f ${BROWSER_PACKAGE_NAME}
 
