@@ -1,11 +1,19 @@
 # Changelog
 
+## [2.2.2](https://github.com/jason84019020/115pc-docker/compare/v2.2.1...v2.2.2) (2026-08-21)
+
+
+### Bug Fixes
+
+* update BROWSER_VERSION to 36.0.1 ([860f07c](https://github.com/jason84019020/115pc-docker/commit/860f07c8aa47b8a638f7d2bc9ee5e758fe45a1dd))
+* 修正容器環境初始化與依賴項設定 ([1eb1d09](https://github.com/jason84019020/115pc-docker/commit/1eb1d09b98c2678571ebe09285c89a8dcb66435f))
+* 補齊 115browser 安裝所需的依賴套件 ([66a4f5c](https://github.com/jason84019020/115pc-docker/commit/66a4f5c5217d91c0f53eefc88e1771f8c394dd51))
+
 ## [2.2.1](https://github.com/jason84019020/115pc-docker/compare/v2.2.0...v2.2.1) (2026-03-20)
 
 
 ### Bug Fixes
 
-* 針對 Debian 13 更新瀏覽器依賴庫與下載指令 ([e7d24b0](https://github.com/jason84019020/115pc-docker/commit/e7d24b0c0c9dcf1b71f101e225c1e095ea77bf83))
 * 針對 Debian 13 更新瀏覽器依賴庫與下載指令 ([b1aa6ce](https://github.com/jason84019020/115pc-docker/commit/b1aa6cea0ec260a6df3ca88f8dd70329c4188ad1))
 
 ## [2.2.0](https://github.com/jason84019020/115pc-docker/compare/v2.1.5...v2.2.0) (2026-03-14)
@@ -20,7 +28,6 @@
 
 ### Bug Fixes
 
-* update BROWSER_VERSION to 36.0.0 ([0df9099](https://github.com/jason84019020/115pc-docker/commit/0df9099d25926a6423f15b236d3263345873d1ef))
 * update BROWSER_VERSION to 36.0.0 ([7230fc5](https://github.com/jason84019020/115pc-docker/commit/7230fc54a969f3c0175a62754eaa5ee041190600))
 
 ## [2.1.4](https://github.com/jason84019020/115pc-docker/compare/v2.1.3...v2.1.4) (2025-12-04)
