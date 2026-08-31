@@ -1,0 +1,19 @@
+{
+  "name": "115-cookie-sync",
+  "version": "1.0.0",
+  "description": "Browser extension for synchronizing cookies",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.2.7",
+    "@types/node": "^22.7.5",
+    "gts": "^7.0.0",
+    "typescript": "^5.6.3"
+  }
+}
