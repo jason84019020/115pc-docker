@@ -1,19 +1,22 @@
-import * as dotenv from 'dotenv';
+import {config} from './config';
 import {getWebSocketURL} from './utils/wait';
+import {Logger} from './utils/logger';
 import {BrowserClient} from './browser/client';
 import {BrowserWorkflows} from './browser/workflows';
 
-dotenv.config({quiet: true});
-
 void (async () => {
-  const webSocketURL = await getWebSocketURL(
-    process.env.BROWSER_DEBUG_HOST,
-    process.env.BROWSER_DEBUG_PORT,
-  );
+  try {
+    const webSocketURL = await getWebSocketURL(
+      config.browserDebug.host,
+      config.browserDebug.port,
+    );
 
-  const client = new BrowserClient(webSocketURL);
-  const browser = await client.connect();
-  const browserWorkflows = new BrowserWorkflows(browser);
-  await browserWorkflows.triggerResumeDownloads();
-  await client.disconnect();
+    const client = new BrowserClient(webSocketURL);
+    const browser = await client.connect();
+    const browserWorkflows = new BrowserWorkflows(browser);
+    await browserWorkflows.triggerResumeDownloads();
+    await client.disconnect();
+  } catch (err) {
+    Logger.error('執行發生錯誤', err);
+  }
 })();

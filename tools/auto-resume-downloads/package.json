@@ -1,22 +1,25 @@
 {
+  "name": "auto-resume-downloads",
   "scripts": {
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
     "ts-node": "ts-node",
-    "build": "node build/src/build.js"
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/auto-resume-downloads.cjs"
   },
   "dependencies": {
-    "axios": "^1.13.2",
-    "dotenv": "^17.2.3",
-    "puppeteer-core": "^24.31.0"
+    "axios": "^1.20.0",
+    "puppeteer-core": "^25.9.0"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
-    "esbuild": "^0.27.0",
-    "gts": "^6.0.2",
+    "esbuild": "^0.28.2",
+    "gts": "^7.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "~5.1.0"
+    "typescript": "^5.6.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

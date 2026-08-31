@@ -4,6 +4,10 @@
   "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
   "eslint.workingDirectories": [
     {
+      "directory": "./extensions/115pc-auto-cookie-loader",
+      "changeProcessCWD": true
+    },
+    {
       "directory": "./tools/auto-resume-downloads",
       "changeProcessCWD": true
     }

@@ -7,6 +7,6 @@ pcmanfm --desktop &
 tint2 &
 
 # 啟動 115Browser
-/usr/local/115Browser/115.sh &
+"${HOME}/browser/115.sh" &
 
 sleep infinity

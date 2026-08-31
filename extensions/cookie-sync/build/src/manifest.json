@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "115 Cookie Sync",
+  "version": "1.0.0",
+  "description": "115 Cookie Sync",
+  "permissions": ["cookies", "tabs"],
+  "host_permissions": ["http://115.com/"],
+  "background": {
+    "service_worker": "index.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["cookie.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
