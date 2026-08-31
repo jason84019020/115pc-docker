@@ -39,7 +39,7 @@
 
 ## 🖥️ 實際畫面
 
-<!-- TODO: ![115pc Docker](docs/images/screenshot.png) -->
+![115pc Docker](https://raw.githubusercontent.com/jason84019020/115pc-docker/refs/heads/main/docs/images/screenshot.png)
 
 ## 🚀 快速開始
 
