@@ -1,0 +1,7 @@
+**/node_modules
+**/build
+**/dist
+
+!extensions/cookie-sync/build/src/
+!extensions/cookie-sync/build/src/cookie.json
+!extensions/cookie-sync/build/src/manifest.json

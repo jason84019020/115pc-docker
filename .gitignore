@@ -1,2 +1,5 @@
-user-data
+certs
+logs
 downloads
+user-data
+cookie.json

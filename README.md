@@ -7,6 +7,27 @@
 
 本專案提供一個高度優化的 **115 電腦版客戶端** Docker 映像檔，讓您能在 NAS、伺服器或任何支援 Docker 的平台上，透過瀏覽器遠端管理 115 下載任務。
 
+## ⚠️ 版本升級注意事項
+
+### v3.0.0
+
+- 修改 `docker-compose.yaml` 中的 `cookie.json` 掛載設定
+- 確保宿主機上的 `cookie.json` 具備[讀寫權限](#️-cookiejson-檔案權限)。
+
+#### docker-compose.yaml
+
+舊版：
+
+```yaml
+./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
+```
+
+新版：
+
+```yaml
+./cookie.json:/config/browser/cookie.json
+```
+
 ## ✨ 核心特色
 
 - 🖥️ **完整圖形介面**：支援透過網頁 (HTTP/HTTPS 5800) 或 VNC (5900) 操作。
@@ -16,11 +37,15 @@
 - 📋 **剪貼簿同步**：支援宿主機與容器間的雙向剪貼簿同步（需開啟 HTTPS）。
 - 🏗️ **基礎升級**：基於 Debian 13 (Trixie) 構建，提供更現代的執行環境。
 
+## 🖥️ 實際畫面
+
+<!-- TODO: ![115pc Docker](docs/images/screenshot.png) -->
+
 ## 🚀 快速開始
 
 ### Docker Compose (建議)
 
-建立 `docker-compose.yaml` 並執行 `docker-compose up -d`：
+建立 `docker-compose.yaml` 並執行 `docker compose up -d`：
 
 ```yaml
 services:
@@ -39,7 +64,7 @@ services:
       - ./certs:/config/certs # 剪貼簿同步必備：掛載憑證目錄
       - ./downloads:/config/browser/downloads
       - ./user-data:/config/browser/user-data
-      - ./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
+      - ./cookie.json:/config/browser/cookie.json
 ```
 
 ### 訪問方式
@@ -67,15 +92,15 @@ services:
 
 ## ⚙️ 配置參數
 
-| 參數                                                              | 必填 | 預設值        | 說明                                                             |
-| ----------------------------------------------------------------- | ---- | ------------- | ---------------------------------------------------------------- |
-| `LANG`                                                            | ✘    | `zh_TW.UTF-8` | 設置系統語言（支援 `en_US.UTF-8`, `zh_CN.UTF-8`, `zh_TW.UTF-8`） |
-| `TZ`                                                              | ✘    | `Asia/Taipei` | 設置時區（例如：`Asia/Singapore`）                               |
-| `SECURE_CONNECTION`                                               | ✘    | 0             | 是否啟用 HTTPS 加密連線 (0: 關閉 / 1: 開啟)                      |
-| `/config/certs`                                                   | ✘    | (掛載)        | 啟用 HTTPS 時需掛載憑證                                          |
-| `/config/browser/downloads`                                       | ✔    | (掛載)        | 115 下載檔案存放路徑                                             |
-| `/config/browser/user-data`                                       | ✔    | (掛載)        | 儲存瀏覽器設定                                                   |
-| `/config/browser/extensions/115pc-auto-cookie-loader/cookie.json` | ✘    | (掛載)        | 自動登入用的 Cookie 檔案                                         |
+| 參數                          | 必填 | 預設值        | 說明                                                             |
+| ----------------------------- | ---- | ------------- | ---------------------------------------------------------------- |
+| `LANG`                        | ✘    | `zh_TW.UTF-8` | 設置系統語言（支援 `en_US.UTF-8`, `zh_CN.UTF-8`, `zh_TW.UTF-8`） |
+| `TZ`                          | ✘    | `Asia/Taipei` | 設置時區（例如：`Asia/Singapore`）                               |
+| `SECURE_CONNECTION`           | ✘    | 0             | 是否啟用 HTTPS 加密連線 (0: 關閉 / 1: 開啟)                      |
+| `/config/certs`               | ✘    | (掛載)        | 啟用 HTTPS 時需掛載憑證                                          |
+| `/config/browser/downloads`   | ✔    | (掛載)        | 115 下載檔案存放路徑                                             |
+| `/config/browser/user-data`   | ✘    | (掛載)        | 儲存瀏覽器設定                                                   |
+| `/config/browser/cookie.json` | ✘    | (掛載)        | 自動登入用的 Cookie 檔案                                         |
 
 ### Cookie.json 範例
 
@@ -86,6 +111,22 @@ services:
   "UID": "YOUR_UID",
   "KID": "YOUR_KID"
 }
+```
+
+### ⚠️ Cookie.json 檔案權限
+
+容器運行後，user:group 可能會改變，因此需要確保 cookie.json 對容器內的執行程序具備讀寫權限。
+
+#### Linux：
+
+```shell
+chmod +rw cookie.json
+```
+
+#### Windows：
+
+```
+右鍵 cookie.json → 內容 → 安全性，確認目前使用者具備「讀取」與「寫入」權限。
 ```
 
 ## 🛠️ 開發與致謝

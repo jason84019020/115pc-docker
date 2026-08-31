@@ -50,6 +50,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          target: prod
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}

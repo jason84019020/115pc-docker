@@ -1,19 +1,33 @@
 services:
-  115pc-dev:
+  cookie-sync:
     build:
       context: .
       dockerfile: Dockerfile
+      target: cookie-sync
+    command: ["sleep", "infinity"]
+  auto-resume-downloads:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: auto-resume-downloads
+    command: ["sleep", "infinity"]
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
       args:
         - IMAGE_BROWSER_VERSION=X.Y.Z
         - IMAGE_CREATED=2026-01-01T00:00:00Z
     restart: unless-stopped
     environment:
       - DISPLAY=:0
+      - BROWSER_LOG_HISTORY=1
     volumes:
       - ./certs:/config/certs
+      - ./logs:/config/browser/logs
       - ./downloads:/config/browser/downloads
       - ./user-data:/config/browser/user-data
-      - ./cookie.json:/config/browser/extensions/115pc-auto-cookie-loader/cookie.json
+      - ./cookie.json:/config/browser/cookie.json
     ports:
-      - 5900:5900
       - 5800:5800
