@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/jason84019020/115pc-docker/compare/v2.2.2...v3.0.0) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* cookie 路徑改為 `/config/browser/cookie.json`
+
+### Features
+
+* Auto Resume Downloads 寫法優化 & 套件版本更新 ([5e06184](https://github.com/jason84019020/115pc-docker/commit/5e06184b8caeea435d665cd5f3e7d9969eba76a7))
+
+
+### Code Refactoring
+
+* 重構 Docker 建置架構與服務配置 ([89d3e22](https://github.com/jason84019020/115pc-docker/commit/89d3e22a14c4aecb49acd06671e376848524c4fa))
+
 ## [2.2.2](https://github.com/jason84019020/115pc-docker/compare/v2.2.1...v2.2.2) (2026-08-21)
 
 
