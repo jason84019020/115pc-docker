@@ -37,9 +37,8 @@ export async function getWebSocketURL(
         webSocketURL = res.data.webSocketDebuggerUrl;
         break;
       }
-    } catch (err) {
-      // ignore errors
-    }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-empty
+    } catch (err) {}
 
     await setTimeout(retry);
   }

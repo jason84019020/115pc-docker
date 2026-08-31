@@ -1,11 +1,3 @@
-declare namespace NodeJS {
-  interface ProcessEnv {
-    NAME: string;
-    BROWSER_DEBUG_HOST: string;
-    BROWSER_DEBUG_PORT: string;
-  }
-}
-
 declare const downloadInterface: {
   /**
    * @param strArray 下載項目列表字串
