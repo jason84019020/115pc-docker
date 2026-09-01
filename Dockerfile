@@ -1,6 +1,18 @@
 FROM node:trixie-slim AS node-base
 
 
+FROM node-base AS node-dev
+
+ARG USER_ID=1001
+ARG GROUP_ID=1001
+ARG USER_NAME=dev
+
+RUN groupadd --gid "${GROUP_ID}" "${USER_NAME}" \
+ && useradd --uid "${USER_ID}" --gid "${GROUP_ID}" --create-home --shell /bin/bash "${USER_NAME}"
+
+USER ${USER_NAME}
+
+
 FROM node-base AS cookie-sync
 
 WORKDIR /extensions/cookie-sync
