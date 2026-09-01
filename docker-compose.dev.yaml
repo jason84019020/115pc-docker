@@ -1,16 +1,17 @@
 services:
-  cookie-sync:
+  # docker compose --file docker-compose.dev.yaml exec -it node bash
+  node:
     build:
       context: .
       dockerfile: Dockerfile
-      target: cookie-sync
+      target: node-dev
+    working_dir: /app
+    volumes:
+      - ./extensions/cookie-sync:/app/cookie-sync
+      - ./tools/auto-resume-downloads:/app/auto-resume-downloads
     command: ["sleep", "infinity"]
-  auto-resume-downloads:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: auto-resume-downloads
-    command: ["sleep", "infinity"]
+
+  # docker compose --file docker-compose.dev.yaml exec -it app bash
   app:
     build:
       context: .
