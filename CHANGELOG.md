@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/jason84019020/115pc-docker/compare/v3.0.0...v3.0.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* 更新 baseimage-gui ([b6396d3](https://github.com/jason84019020/115pc-docker/commit/b6396d3a336f0a570ba961f13fac102014e838fb))
+
 ## [3.0.0](https://github.com/jason84019020/115pc-docker/compare/v2.2.2...v3.0.0) (2026-08-31)
 
 
