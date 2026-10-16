@@ -7,8 +7,8 @@ services:
       target: node-dev
     working_dir: /app
     volumes:
-      - ./extensions/cookie-sync:/app/cookie-sync
-      - ./tools/auto-resume-downloads:/app/auto-resume-downloads
+      - ./extensions/cookie-sync:/app/extensions/cookie-sync
+      - ./tools/auto-resume-downloads:/app/tools/auto-resume-downloads
     command: ["sleep", "infinity"]
 
   # docker compose --file docker-compose.dev.yaml exec -it app bash
