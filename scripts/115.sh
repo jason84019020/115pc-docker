@@ -7,7 +7,7 @@ cd "${APP_DIR}" || exit 1
 export LD_LIBRARY_PATH="${APP_DIR}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 # 調用觸發恢復下載
-node --no-deprecation "${HOME}/browser/tools/auto-resume-downloads.cjs" &
+"${HOME}/browser/tools/auto-resume-downloads" &
 
 BROWSER_LANG=$(
   case "${LANG}" in
