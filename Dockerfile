@@ -26,6 +26,8 @@ RUN npm run compile
 
 FROM node-base AS auto-resume-downloads
 
+COPY --from=oven/bun:debian /usr/local/bin/bun /usr/local/bin/bun
+
 WORKDIR /tools/auto-resume-downloads
 
 COPY tools/auto-resume-downloads/package*.json ./
@@ -63,8 +65,7 @@ RUN mkdir -p ${HOME}/Desktop \
 WORKDIR ${HOME}
 
 COPY --from=cookie-sync /extensions/cookie-sync/build/src ${HOME}/browser/extensions/cookie-sync
-COPY --from=auto-resume-downloads /usr/local/bin/node /usr/local/bin/node
-COPY --from=auto-resume-downloads /tools/auto-resume-downloads/dist/auto-resume-downloads.cjs ${HOME}/browser/tools/auto-resume-downloads.cjs
+COPY --from=auto-resume-downloads /tools/auto-resume-downloads/dist/auto-resume-downloads ${HOME}/browser/tools/auto-resume-downloads
 COPY scripts/115.sh ${HOME}/browser/115.sh
 COPY scripts/startapp.sh /startapp.sh
 COPY scripts/clean-singleton.sh /etc/cont-init.d/50-clean-singleton.sh
